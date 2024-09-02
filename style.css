@@ -7,11 +7,14 @@
     --outline-color-focused: #585b70;
     /* --bg-color: color-mix(in srgb, var(--accent-color) 1%, var(--bg-color-raw) 99%); */
     --text-color: #cdd6f4;
+    --text-inverted-color: var(--bg-color);
 
     --good-color: #a6e3a1;
+    --good-hover-color: color-mix(in srgb, var(--accent-color) 15%, var(--good-color) 85%);
     --warning-color: #f9e2af;
     --caution-color: #f38ba8;
     --informative-color: #cba6f7;
+    --transition-bezier: cubic-bezier(.25, .46, .45, .94);
 }
 
 body {
@@ -20,6 +23,21 @@ body {
 
 }
 * {font-family: Lexend}
+
+button {
+    max-width: max-content;
+    border: none;
+    padding: 16px 24px;
+    background-color: var(--good-color);
+    color: var(--text-inverted-color);
+    font-size: .95rem;
+    border-radius: 16px;
+    transition: all .4s var(--transition-bezier);
+}
+
+button:hover {
+    background-color: var(--good-hover-color);
+}
 
 #config {
     display: flex;

@@ -44,7 +44,9 @@ function __createCheckbox(id, text) {
 
 function __createExecuteBtn() {
     let element = document.createElement("button");
-    element.innerHTML = '<button id="config_execute">execute</button>';
+    // element.id = '<button id="config_execute">execute</button>';
+    element.id = "config_execute";
+    element.textContent = "execute";
 
     formElement.appendChild(element);
 }
