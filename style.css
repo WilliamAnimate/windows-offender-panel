@@ -1,20 +1,34 @@
+@media (prefers-color-scheme: dark) {
+    :root {
+        --accent-color: #f5c2e7; /* hehe */
+        --bg-color: #1e1e2e;
+        --bg-color-focus: #313244;
+        --outline-color: var(--bg-color-focus);
+        --outline-color-hover: #45475a;
+        --outline-color-focused: #585b70;
+        /* --bg-color: color-mix(in srgb, var(--accent-color) 1%, var(--bg-color-raw) 99%); */
+        --text-color: #cdd6f4;
+
+        --good-color: #a6e3a1;
+        --warning-color: #f9e2af;
+        --caution-color: #f38ba8;
+        --informative-color: #cba6f7;
+    }
+}
 :root {
-    --accent-color: #f5c2e7; /* hehe */
-    --bg-color: #1e1e2e;
-    --bg-color-focus: #313244;
+    --accent-color: #df3ab3; /* allow me to darken it for contrast */
+    --bg-color: #eee;
+    --bg-color-focus: #b5b6c9;
     --outline-color: var(--bg-color-focus);
-    --outline-color-hover: #45475a;
-    --outline-color-focused: #585b70;
+    --outline-color-hover: #313244;
+    --outline-color-focused: #;
     /* --bg-color: color-mix(in srgb, var(--accent-color) 1%, var(--bg-color-raw) 99%); */
-    --text-color: #cdd6f4;
-    --text-inverted-color: var(--bg-color);
+    --text-color: #122254;
 
     --good-color: #a6e3a1;
-    --good-hover-color: color-mix(in srgb, var(--accent-color) 15%, var(--good-color) 85%);
     --warning-color: #f9e2af;
     --caution-color: #f38ba8;
     --informative-color: #cba6f7;
-    --transition-bezier: cubic-bezier(.25, .46, .45, .94);
 }
 
 body {
@@ -23,21 +37,6 @@ body {
 
 }
 * {font-family: Lexend}
-
-button {
-    max-width: max-content;
-    border: none;
-    padding: 10px 24px;
-    background-color: var(--good-color);
-    color: var(--text-inverted-color);
-    font-size: .95rem;
-    border-radius: 16px;
-    transition: all .4s var(--transition-bezier);
-}
-
-button:hover {
-    background-color: var(--good-hover-color);
-}
 
 #config {
     display: flex;
