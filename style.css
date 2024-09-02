@@ -22,15 +22,27 @@ body {
 * {font-family: Lexend}
 
 #config {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    width: 30%;
     margin-bottom: 10px;
 }
 
-#input_container {
+.flex-column-inline {
     display: flex;
     flex-direction: row;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
+
+    gap: 10px;
+}
+
+#input_container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 input[type="text"] {

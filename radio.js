@@ -2,8 +2,11 @@
 // the executioner works on a tuesday.
 var executioner; // variable will be assigned a value in initSummonRadioButtons
 const radioBtns = [
-    { id: "shutdowns", text: "Shut down the computer" },
-    { id: "reboot", text: "Reboot the computer" },
+    // { id: "shutdown", text: "Shut down the computer" },
+    { id: "power", text: "power" },
+    // { id: "reboot", text: "Reboot the computer" },
+    { id: "syscalls", text: "syscalls" },
+    { id: "normal", text: "normal" },
 ];
 const formElement = document.getElementById("config");
 
@@ -21,6 +24,9 @@ function initSummonRadioButtons() {
 }
 
 function __createCheckbox(id, text) {
+    let div = document.createElement("div");
+    div.classList.add("flex-column-inline");
+
     let input = document.createElement("input");
     input.setAttribute("type", "radio");
     input.setAttribute("id", `cfg_${id}`);
@@ -31,8 +37,9 @@ function __createCheckbox(id, text) {
     label.setAttribute("for", `cfg_${id}`);
     label.textContent = text;
 
-    formElement.appendChild(input);
-    formElement.appendChild(label);
+    formElement.appendChild(div);
+    div.appendChild(input);
+    div.appendChild(label);
 }
 
 function __createExecuteBtn() {
