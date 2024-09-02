@@ -27,7 +27,7 @@ body {
 button {
     max-width: max-content;
     border: none;
-    padding: 16px 24px;
+    padding: 10px 24px;
     background-color: var(--good-color);
     color: var(--text-inverted-color);
     font-size: .95rem;
