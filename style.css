@@ -1,0 +1,101 @@
+:root {
+    --accent-color: #f5c2e7; /* hehe */
+    --bg-color: #1e1e2e;
+    --bg-color-focus: #313244;
+    --outline-color: var(--bg-color-focus);
+    --outline-color-hover: #45475a;
+    --outline-color-focused: #585b70;
+    /* --bg-color: color-mix(in srgb, var(--accent-color) 1%, var(--bg-color-raw) 99%); */
+    --text-color: #cdd6f4;
+
+    --good-color: #a6e3a1;
+    --warning-color: #f9e2af;
+    --caution-color: #f38ba8;
+    --informative-color: #cba6f7;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+
+}
+* {font-family: Lexend}
+
+#config {
+    margin-bottom: 10px;
+}
+
+#input_container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    border: 2px solid #313244;
+    border-radius: 4px;
+
+    width: 30%;
+
+    transition: all 150ms ease-in;
+}
+
+input[type="text"]:hover {
+    border-color: var(--outline-color-hover);
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--outline-color-focused);
+}
+
+.radio-container {
+    display: flex;
+    gap: 10px;
+}
+
+/* TODO: make inner circle smaller */
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    transform: scale(1);
+    border: 2px solid var(--text-color);
+    border-radius: 50%;
+    outline: none;
+
+    transition: all 150ms ease-in;
+    margin-right: 0px;
+}
+
+/* for input[type="radio"]; this makes it so there isn't extra space where you can't click on the button */
+label {
+    margin-left: -22px;
+    padding-left: 20px;
+}
+
+input[type="radio"]::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: -3px;
+    border-radius: 50%;
+    transform: scale(0);
+}
+
+input[type="radio"]:hover {
+    border-color: var(--accent-color);
+}
+
+input[type="radio"]:checked {
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+}

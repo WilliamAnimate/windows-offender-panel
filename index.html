@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meow</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="icons.css">
+    <!-- google knows what you are. -->
+    <!-- well, at least not connecting to meta... -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet"> -->
+
+    <!-- defer & async only work on firefox. if you on chrome then have fun because google does not give one shit for you or developers -->
+    <script src="icons.js" async></script>
+    <script src="radio.js" defer></script>
+
+    <!-- must be executed last -->
+    <script src="main.js" defer></script>
+    <!-- <script src="bg.js"></script> -->
+</head>
+<body>
+    <h1 id="title">catgirl panel</h1>
+    <form id="config" class="radio-container" onsubmit="return onFormSubmit(event)">
+        <!-- this is handled by js -->
+        <input type="radio" id="cfg_shutdown" name="group" value="cfg_shutdown">
+        <label for="cfg_shutdown">Shut down the computer</label>
+      
+        <!-- <input type="radio" id="cfg_reboot" name="group" value="cfg_reboot"> -->
+        <!-- <label for="cfg_reboot">Reboot the computer</label> -->
+    </form>
+    <div id="input_container">
+        <input type="text" id="ipInput" placeholder="ip">
+        <input type="text" id="portInput" placeholder="port">
+        <input type="text" id="passwordInput" placeholder="password">
+    </div>
+
+    <div class="icon-checkmark"></div>
+</body>
+</html>

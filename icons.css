@@ -1,0 +1,7 @@
+.icon {
+    display: inline-block;
+}
+
+.icon-check {
+    color: var(--good-color);
+}
