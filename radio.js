@@ -42,16 +42,6 @@ function __createExecuteBtn() {
     formElement.appendChild(element);
 }
 
-// executioner.addEventListener('click', () => {
-//     const selectedRadio = document.querySelector('input[type="radio"]:checked');
-
-//     if (selectedRadio) {
-//         console.log(`Selected: ${selectedRadio.value}`);
-//     } else {
-//         console.log("No radio button selected");
-//     }
-// });
-
 /**
  * this function should only be called from html, as part of the onsubmit= attribute.
  * as such, if you want to call this from a js context, know that:
