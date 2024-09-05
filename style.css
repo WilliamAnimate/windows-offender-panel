@@ -73,11 +73,9 @@ button:hover {
     background-color: var(--good-hover-color);
 }
 
-#config {
+.radio-container {
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    align-items: left;
     width: 30%;
     margin-bottom: 10px;
 }
@@ -87,6 +85,9 @@ button:hover {
     flex-direction: row;
 
     gap: 10px;
+}
+.radio-container.rightmost .flex-column-inline {
+    margin-left: auto;
 }
 
 #input_container {
