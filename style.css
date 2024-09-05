@@ -45,6 +45,19 @@ body {
 }
 * {font-family: Lexend}
 
+#config-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/* yes, the margin- is intended for these two classes. */
+#config-container .leftmost {
+    margin-right: auto;
+}
+#config-container .rightmost {
+    margin-left: auto;
+}
+
 button {
     max-width: max-content;
     border: none;

@@ -19,6 +19,12 @@ if (document.getElementById("title").textContent != "catgirl panel") {
     console.warn("hallilo, why??");
 }
 
+function onTypeFormSubmit() {
+    
+
+    return false;
+}
+
 function onInit() {
     try {
         initSummonRadioButtons();
