@@ -1,8 +1,10 @@
-const ip = document.getElementById("ipInput");
-const port = document.getElementById("portInput");
-const password = document.getElementById("passwordInput");
-
 async function invokeRequest(message) {
+    const ip = document.getElementById("ipInput").value;
+    const port = document.getElementById("portInput").value;
+    const password = document.getElementById("passwordInput").value;
+
+    console.log(`ip: ${ip}, ${port}, ${password}`);
+
     const url = `http://${ip}:${port}/`;
     const response = await fetch(url, {
         method: 'POST',
