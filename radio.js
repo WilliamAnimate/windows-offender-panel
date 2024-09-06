@@ -125,7 +125,8 @@ function assembleNetworkString() {
         return null;
     }
 
-    str = checked.join(".");
+    let str2 = checked.join(":");
+    let str = "powercontrol:" + str2;
 
     console.log(str);
     return str;
