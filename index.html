@@ -15,12 +15,14 @@
     <!-- defer & async only work on firefox. if you on chrome then have fun because google does not give one shit for you or developers -->
     <script src="icons.js" async></script>
     <script src="radio.js" defer></script>
+    <script src="networking.js" defer></script>
 
     <!-- must be executed last -->
     <script src="main.js" defer></script>
 </head>
 <body>
     <h1 id="title">catgirl panel</h1>
+    <p>highly wip; subject to change.</p>
     <section id="config-container">
         <!-- TODO: rename to type or something -->
         <form id="config" class="radio-container leftmost" onsubmit="return onFormSubmit(event)">
@@ -28,10 +30,6 @@
         </form>
         <form id="postconfig" class="radio-container rightmost" onsubmit="return false">
             <!-- this is also handled by js -->
-            <!-- <div class="flex-column-inline">
-                <input type="radio" id="cfg_idk" name="group" value="cfg_idk">
-                <label for="cfg_idk">poweroff</label>
-            </div> -->
         </form>
     </section>
     <div id="input_container">

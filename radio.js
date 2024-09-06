@@ -27,10 +27,10 @@ function onRadioTypeChange(event) {
     postFormElement.innerHTML = ""; // clear whatever is inside postFormElement
     switch (id) {
         case "firmware":
-            __createTypesInArray(powerActions, postFormElement);
+            __createTypesInArray(powerActions, postFormElement, true);
             break;
         case "syscalls":
-            __createTypesInArray(syscallsActions, postFormElement);
+            __createTypesInArray(syscallsActions, postFormElement, true);
             break;
         case "normal":
             console.error("TODO: HERE");
@@ -52,13 +52,13 @@ function initSummonRadioButtons() {
     executioner = document.getElementById("config_execute");
 }
 
-function __createTypesInArray(array, typesArea = Element) {
+function __createTypesInArray(array, typesArea = Element, skipElRegisteration = false) {
     array.forEach(a => {
-        __createCheckbox(a.id, a.text, typesArea);
+        __createCheckbox(a.id, a.text, typesArea, skipElRegisteration);
     });
 }
 
-function __createCheckbox(id, text, createOn = Element) {
+function __createCheckbox(id, text, createOn = Element, skipElRegisteration = false) {
     let div = document.createElement("div");
     div.classList.add("flex-column-inline");
 
@@ -75,7 +75,8 @@ function __createCheckbox(id, text, createOn = Element) {
     createOn.appendChild(div);
     div.appendChild(input);
     div.appendChild(label);
-    input.addEventListener("change", onRadioTypeChange);
+    if (!skipElRegisteration)
+        input.addEventListener("change", onRadioTypeChange);
 }
 
 function __createExecuteBtn() {
@@ -111,7 +112,8 @@ function onFormSubmit(event) {
     console.log(`form submitted: ${event}`);
 
     getCheckedRadioIds();
-    assembleNetworkString();
+    s = assembleNetworkString();
+    invokeRequest(s);
 
     // dont you dare refresh the damn page!!!!!!
     return false;
@@ -126,4 +128,5 @@ function assembleNetworkString() {
     str = checked.join(".");
 
     console.log(str);
+    return str;
 }
