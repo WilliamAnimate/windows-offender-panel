@@ -27,13 +27,15 @@
     <section id="everything">
         <fieldset id="powercontrol" class="config-container">
             <legend>Power Management</legend>
-            <!-- TODO: rename to type or something -->
-            <form id="config" class="radio-container leftmost" onsubmit="return onFormSubmit('power')">
-                <!-- this is handled by js -->
-            </form>
-            <form id="postconfig" class="radio-container rightmost" onsubmit="return false">
-                <!-- this is also handled by js -->
-            </form>
+            <div class="config-container-inner">
+                <!-- TODO: rename to type or something -->
+                <form id="config" class="radio-container leftmost" onsubmit="return onFormSubmit('power')">
+                    <!-- this is handled by js -->
+                </form>
+                <form id="postconfig" class="radio-container rightmost" onsubmit="return false">
+                    <!-- this is also handled by js -->
+                </form>
+            </div>
         </fieldset>
         <div id="input_container">
             <input type="text" id="ipInput" placeholder="IP Address">

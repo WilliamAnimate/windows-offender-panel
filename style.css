@@ -56,9 +56,16 @@ body {
     height: 40%;
 }
 .config-container {
+    border: var(--outline-color) 2px solid;
+}
+.config-container-inner {
     display: flex;
     flex-direction: row;
-    border: var(--outline-color) 2px solid;
+}
+
+.block-centered {
+    display: block;
+    margin: 0 auto;
 }
 
 /* yes, the margin- is intended for these two classes. */

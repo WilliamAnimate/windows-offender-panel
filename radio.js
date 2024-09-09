@@ -28,7 +28,7 @@ function initSummonRadioButtons() {
     __createTypesInArray(types, formElement);
     __createTypesInArray(powerActions, postFormElement);
 
-    __createExecuteBtn();
+    __createExecuteBtn("powercontrol"); // TODO: modularify
     executioner = document.getElementById("config_execute");
 }
 
@@ -57,12 +57,13 @@ function __createCheckbox(id, text, createOn = Element) {
     div.appendChild(label);
 }
 
-function __createExecuteBtn() {
+function __createExecuteBtn(atElement) {
     let element = document.createElement("button");
+    element.classList.add("block-centered");
     element.id = "config_execute";
     element.textContent = "execute";
 
-    formElement.appendChild(element);
+    document.getElementById(atElement).appendChild(element);
 }
 
 function scanForCheckedInDiv(div) {

@@ -19,9 +19,7 @@ if (document.getElementById("title").textContent != "catgirl panel") {
     console.warn("hallilo, why??");
 }
 
-// yes; this is async. it involves invokeRequest which we will want to wait for.
-// so we can do something funny later: parse response.
-async function onFormSubmit(where) {
+function onFormSubmit(where) {
     // if (typeof(where) != String) {
     //     console.error(`typeof(where) != string: typeof(where): ${typeof(where)}, where: ${where}`);
     //     return false;
@@ -38,7 +36,7 @@ async function onFormSubmit(where) {
     }
     console.log(networkStr)
     console.log(networkStr.join(":"));
-    invokeRequest(networkStr).await;
+    // invokeRequest(networkStr).await;
 
     return false;
 }
