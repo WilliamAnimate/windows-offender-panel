@@ -45,16 +45,27 @@ body {
 }
 * {font-family: Lexend}
 
-#config-container {
+#everything {
     display: flex;
     flex-direction: row;
+    gap: 5px;
+}
+#somethingelse,
+#powercontrol {
+    width: 35%;
+    height: 40%;
+}
+.config-container {
+    display: flex;
+    flex-direction: row;
+    border: var(--outline-color) 2px solid;
 }
 
 /* yes, the margin- is intended for these two classes. */
-#config-container .leftmost {
+.config-container .leftmost {
     margin-right: auto;
 }
-#config-container .rightmost {
+.config-container .rightmost {
     margin-left: auto;
 }
 

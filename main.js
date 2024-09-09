@@ -19,8 +19,26 @@ if (document.getElementById("title").textContent != "catgirl panel") {
     console.warn("hallilo, why??");
 }
 
-function onTypeFormSubmit() {
-    
+// yes; this is async. it involves invokeRequest which we will want to wait for.
+// so we can do something funny later: parse response.
+async function onFormSubmit(where) {
+    // if (typeof(where) != String) {
+    //     console.error(`typeof(where) != string: typeof(where): ${typeof(where)}, where: ${where}`);
+    //     return false;
+    // }
+    console.debug(where);
+    let networkStr;
+    switch (where) {
+        case "power":
+            networkStr = scanForCheckedInDiv("powercontrol");
+            break;
+        default:
+            console.error(`${where} is unimplemented!`);
+            break;
+    }
+    console.log(networkStr)
+    console.log(networkStr.join(":"));
+    invokeRequest(networkStr).await;
 
     return false;
 }

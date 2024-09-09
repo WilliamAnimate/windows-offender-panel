@@ -4,14 +4,14 @@ var executioner; // variable will be assigned a value in initSummonRadioButtons
 // im confident there is a datatype that does this 100 times better
 // TODO: fixme
 const types = [
-    { id: "normal", text: "normal" },
-    { id: "syscalls", text: "syscall" },
-    { id: "firmware", text: "firmware" },
+    { id: "normal", text: "Normal" },
+    { id: "syscalls", text: "Syscall" },
+    { id: "firmware", text: "Firmware" },
 ];
 const powerActions = [
-    { id: "powerdown", text: "power down" },
-    { id: "reboot", text: "reboot" },
-    { id: "halt", text: "halt" },
+    { id: "powerdown", text: "Power down" },
+    { id: "reboot", text: "Reboot" },
+    { id: "halt", text: "Halt" },
 ]
 const syscallsActions = [
     // this is a test, obviously.
@@ -20,45 +20,25 @@ const syscallsActions = [
 const formElement = document.getElementById("config");
 const postFormElement = document.getElementById("postconfig");
 
-function onRadioTypeChange(event) {
-    id = event.target.id.replace("cfg_", "");
-
-    console.warn(id);
-    postFormElement.innerHTML = ""; // clear whatever is inside postFormElement
-    switch (id) {
-        case "firmware":
-            __createTypesInArray(powerActions, postFormElement, true);
-            break;
-        case "syscalls":
-            __createTypesInArray(syscallsActions, postFormElement, true);
-            break;
-        case "normal":
-            console.error("TODO: HERE");
-            break;
-        default:
-            console.error(`id ${id} is unimplemented`);
-            break;
-    }
-}
-
 /**
  * init sequence: create all radioBtns as part of the const `radioBtns` in radio.js
  * @see types (part of radio.js)
  */
 function initSummonRadioButtons() {
     __createTypesInArray(types, formElement);
+    __createTypesInArray(powerActions, postFormElement);
 
     __createExecuteBtn();
     executioner = document.getElementById("config_execute");
 }
 
-function __createTypesInArray(array, typesArea = Element, skipElRegisteration = false) {
+function __createTypesInArray(array, typesArea = Element) {
     array.forEach(a => {
-        __createCheckbox(a.id, a.text, typesArea, skipElRegisteration);
+        __createCheckbox(a.id, a.text, typesArea);
     });
 }
 
-function __createCheckbox(id, text, createOn = Element, skipElRegisteration = false) {
+function __createCheckbox(id, text, createOn = Element) {
     let div = document.createElement("div");
     div.classList.add("flex-column-inline");
 
@@ -75,8 +55,6 @@ function __createCheckbox(id, text, createOn = Element, skipElRegisteration = fa
     createOn.appendChild(div);
     div.appendChild(input);
     div.appendChild(label);
-    if (!skipElRegisteration)
-        input.addEventListener("change", onRadioTypeChange);
 }
 
 function __createExecuteBtn() {
@@ -85,6 +63,25 @@ function __createExecuteBtn() {
     element.textContent = "execute";
 
     formElement.appendChild(element);
+}
+
+function scanForCheckedInDiv(div) {
+    let d = document.querySelector(`#${div}`);
+    if (!div) {
+        console.error(`div ${div} doesnt exist`);
+        return;
+    }
+
+    let radios = d.querySelectorAll('input[type="radio"]:checked');
+    let checked = [];
+    checked.push(div);
+    radios.forEach(radio => {
+        let r = radio.id.replace("cfg_", "");
+        console.log(r);
+        checked.push(r);
+    });
+
+    return checked;
 }
 
 function getCheckedRadioIds() {
@@ -100,22 +97,13 @@ function getCheckedRadioIds() {
     return ret;
 }
 
-/**
- * this function should only be called from html, as part of the onsubmit= attribute.
- * as such, if you want to call this from a js context, know that:
- * 1. you are making a huge mistake
- * 2. the code complexity will quadruple
- * @param {*} event optional variable lmao
- * @returns false (so the form does not submit)
- */
-function onFormSubmit(event) {
+function radio_onFormSubmit(event) {
     console.log(`form submitted: ${event}`);
 
     getCheckedRadioIds();
     s = assembleNetworkString();
     invokeRequest(s);
 
-    // dont you dare refresh the damn page!!!!!!
     return false;
 }
 

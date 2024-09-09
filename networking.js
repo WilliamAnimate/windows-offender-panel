@@ -10,4 +10,5 @@ async function invokeRequest(message) {
         method: 'POST',
         body: message,
     });
+    console.log(`response received: ${response}`);
 }
