@@ -1,41 +1,42 @@
 :root {
-    --accent-color: #ea76cb;
-    --bg-color: #eff1f5;
-    --bg-color-focus: #ccd0da;
+    --accent-color: #f5c2e7; /* hehe */
+    --bg-color: #1e1e2e;
+    --bg-color-focus: #313244;
     --outline-color: var(--bg-color-focus);
-    --outline-color-hover: #ccd0da;
-    --outline-color-focused: #acb0be;
+    --outline-color-hover: #45475a;
+    --outline-color-focused: #585b70;
     /* --bg-color: color-mix(in srgb, var(--accent-color) 1%, var(--bg-color-raw) 99%); */
-    --text-color: #4c4f69;
+    --text-color: #cdd6f4;
     --text-inverted-color: var(--bg-color);
 
-    --good-color: #40a02b;
+    --good-color: #a6e3a1;
     --good-hover-color: color-mix(in srgb, var(--accent-color) 15%, var(--good-color) 85%);
-    --warning-color: #df8e1d;
-    --caution-color: #d20f39;
-    --informative-color: #8839ef;
-
-    --transition-bezier: cubic-bezier(.25, .46, .45, .94);
+    --warning-color: #f9e2af;
+    --caution-color: #f38ba8;
+    --informative-color: #cba6f7;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
-        --accent-color: #f5c2e7; /* hehe */
-        --bg-color: #1e1e2e;
-        --bg-color-focus: #313244;
+        --accent-color: #ea76cb;
+        --bg-color: #eff1f5;
+        --bg-color-focus: #ccd0da;
         --outline-color: var(--bg-color-focus);
-        --outline-color-hover: #45475a;
-        --outline-color-focused: #585b70;
+        --outline-color-hover: #ccd0da;
+        --outline-color-focused: #acb0be;
         /* --bg-color: color-mix(in srgb, var(--accent-color) 1%, var(--bg-color-raw) 99%); */
-        --text-color: #cdd6f4;
+        --text-color: #4c4f69;
         --text-inverted-color: var(--bg-color);
-
-        --good-color: #a6e3a1;
+    
+        --good-color: #40a02b;
         --good-hover-color: color-mix(in srgb, var(--accent-color) 15%, var(--good-color) 85%);
-        --warning-color: #f9e2af;
-        --caution-color: #f38ba8;
-        --informative-color: #cba6f7;
+        --warning-color: #df8e1d;
+        --caution-color: #d20f39;
+        --informative-color: #8839ef;
+    
+        --transition-bezier: cubic-bezier(.25, .46, .45, .94);
     }
+    
 }
 
 body {
