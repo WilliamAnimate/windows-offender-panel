@@ -15,7 +15,7 @@
     --caution-color: #f38ba8;
     --informative-color: #cba6f7;
 }
-
+/* This is broken, pls fix asap 
 @media (prefers-color-scheme: light) {
     :root {
         --accent-color: #ea76cb;
@@ -24,7 +24,7 @@
         --outline-color: var(--bg-color-focus);
         --outline-color-hover: #ccd0da;
         --outline-color-focused: #acb0be;
-        /* --bg-color: color-mix(in srgb, var(--accent-color) 1%, var(--bg-color-raw) 99%); */
+        // --bg-color: color-mix(in srgb, var(--accent-color) 1%, var(--bg-color-raw) 99%); 
         --text-color: #4c4f69;
         --text-inverted-color: var(--bg-color);
     
@@ -36,9 +36,8 @@
     
         --transition-bezier: cubic-bezier(.25, .46, .45, .94);
     }
-    
 }
-
+*/
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
