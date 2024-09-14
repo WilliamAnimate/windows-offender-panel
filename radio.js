@@ -64,6 +64,8 @@ function __createExecuteBtn(atElement) {
     element.textContent = "execute";
 
     document.getElementById(atElement).appendChild(element);
+    // FIXME: make this modular
+    element.addEventListener("click", function(){onFormSubmit("power")});
 }
 
 function scanForCheckedInDiv(div) {

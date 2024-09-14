@@ -28,7 +28,7 @@ function onFormSubmit(where) {
             break;
         default:
             console.error(`${where} is unimplemented!`);
-            break;
+            return;
     }
     console.log(networkStr)
     console.log(networkStr.join(":"));
@@ -42,6 +42,7 @@ function onInit() {
         initSummonRadioButtons();
     } catch (e) {
         console.error(`initialization failed: ${e}`);
+        alert(`initialization failed:\n${e}`);
         return;
     }
     console.log("initialization all complete; everything seems okay.");
