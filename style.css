@@ -49,13 +49,11 @@ body {
     flex-direction: row;
     gap: 5px;
 }
-#somethingelse,
-#powercontrol {
-    width: 35%;
-    height: 40%;
-}
+
 .config-container {
     border: var(--outline-color) 2px solid;
+    width: 35%;
+    height: 40%;
 }
 .config-container-inner {
     display: flex;
@@ -73,7 +71,6 @@ body {
 }
 .config-container .rightmost {
     margin-left: auto;
-    padding-right: 10px; /* WTF? */
 }
 
 button {
@@ -104,6 +101,8 @@ button:hover {
 
     gap: 10px;
 }
+/* TODO: reintergrate this once putting the radio buttons on the right is possible.
+this will be a huge feat for humanity. */
 /* .radio-container.rightmost .flex-column-inline {
     margin-left: auto;
 } */
