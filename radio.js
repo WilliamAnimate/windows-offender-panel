@@ -5,6 +5,7 @@ var executioner; // variable will be assigned a value in initSummonRadioButtons
 // TODO: fixme
 const powerTypes = [
     { entry: "power" },
+    { atElement: "power" },
     { switch: "config" },
     { id: "normal", text: "Normal" },
     { id: "syscalls", text: "Syscall" },
@@ -20,16 +21,18 @@ const powerTypes = [
  * @see powerTypes (part of radio.js)
  */
 function initSummonRadioButtons(array) {
-    let attachElement = array[0];
+    let entry = array[0].entry;
+    let atElement = array[1].atElement;
     __createTypesInArray(powerTypes);
-    // __createTypesInArray(powerActions, postFormElement);
 
-    __createExecuteBtn("power", "power"); // TODO: modularify
+    __createExecuteBtn(atElement, entry);
     executioner = document.getElementById("config_execute");
 }
 
 function __createTypesInArray(array) {
-    array.shift(); // remove the first element; it is the core type
+    // remove the first and second element; those are the entry and atElement entries
+    array.shift();
+    array.shift();
     let toGo;
     array.forEach(a => {
         if (a.switch) {
@@ -61,14 +64,14 @@ function __createCheckbox(id, text, createOn = Element) {
 }
 
 function __createExecuteBtn(atElement, id) {
+    console.log(atElement);
     let element = document.createElement("button");
     element.classList.add("block-centered");
-    element.id = id;
+    element.id = `${id}_executioner`;
     element.textContent = "execute";
 
     document.getElementById(atElement).appendChild(element);
-    // FIXME: make this modular
-    element.addEventListener("click", function(){onFormSubmit("power")});
+    element.addEventListener("click", function(){onFormSubmit(id)});
 }
 
 function scanForCheckedInDiv(div) {
