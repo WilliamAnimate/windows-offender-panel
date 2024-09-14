@@ -15,10 +15,6 @@
     e.innerHTML = icons.check
 });
 
-if (document.getElementById("title").textContent != "catgirl panel") {
-    console.warn("hallilo, why??");
-}
-
 function onFormSubmit(where) {
     // if (typeof(where) != String) {
     //     console.error(`typeof(where) != string: typeof(where): ${typeof(where)}, where: ${where}`);
