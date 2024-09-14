@@ -24,7 +24,7 @@ function onFormSubmit(where) {
     let networkStr;
     switch (where) {
         case "power":
-            networkStr = scanForCheckedInDiv("powercontrol");
+            networkStr = scanForCheckedInDiv("power");
             break;
         default:
             console.error(`${where} is unimplemented!`);
@@ -42,13 +42,13 @@ function onFormSubmit(where) {
 }
 
 function onInit() {
-    try {
-        initSummonRadioButtons();
-    } catch (e) {
-        console.error(`initialization failed: ${e}`);
-        alert(`initialization failed:\n${e}`);
-        return;
-    }
+    // try {
+        initSummonRadioButtons(powerTypes);
+    // } catch (e) {
+    //     console.error(`initialization failed: ${e}`);
+    //     // alert(`initialization failed:\n${e}`);
+    //     return;
+    // }
     console.log("initialization all complete; everything seems okay.");
 }
 

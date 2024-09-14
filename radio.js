@@ -3,38 +3,41 @@
 var executioner; // variable will be assigned a value in initSummonRadioButtons
 // im confident there is a datatype that does this 100 times better
 // TODO: fixme
-const types = [
+const powerTypes = [
+    { entry: "power" },
+    { switch: "config" },
     { id: "normal", text: "Normal" },
     { id: "syscalls", text: "Syscall" },
     { id: "firmware", text: "Firmware" },
-];
-const powerActions = [
+    { switch: "postconfig" },
     { id: "powerdown", text: "Power down" },
     { id: "reboot", text: "Reboot" },
     { id: "halt", text: "Halt" },
-]
-const syscallsActions = [
-    // this is a test, obviously.
-    { id: "kebugcheck", text: "execute KeBugCheck" }
-]
-const formElement = document.getElementById("config");
-const postFormElement = document.getElementById("postconfig");
+];
 
 /**
  * init sequence: create all radioBtns as part of the const `radioBtns` in radio.js
- * @see types (part of radio.js)
+ * @see powerTypes (part of radio.js)
  */
-function initSummonRadioButtons() {
-    __createTypesInArray(types, formElement);
-    __createTypesInArray(powerActions, postFormElement);
+function initSummonRadioButtons(array) {
+    let attachElement = array[0];
+    __createTypesInArray(powerTypes);
+    // __createTypesInArray(powerActions, postFormElement);
 
-    __createExecuteBtn("powercontrol"); // TODO: modularify
+    __createExecuteBtn("power", "power"); // TODO: modularify
     executioner = document.getElementById("config_execute");
 }
 
-function __createTypesInArray(array, typesArea = Element) {
+function __createTypesInArray(array) {
+    array.shift(); // remove the first element; it is the core type
+    let toGo;
     array.forEach(a => {
-        __createCheckbox(a.id, a.text, typesArea);
+        if (a.switch) {
+            console.debug(`changing toGo to ${a.switch}`);
+            toGo = document.getElementById(a.switch);
+        } else {
+            __createCheckbox(a.id, a.text, toGo);
+        }
     });
 }
 
@@ -57,10 +60,10 @@ function __createCheckbox(id, text, createOn = Element) {
     div.appendChild(label);
 }
 
-function __createExecuteBtn(atElement) {
+function __createExecuteBtn(atElement, id) {
     let element = document.createElement("button");
     element.classList.add("block-centered");
-    element.id = "config_execute";
+    element.id = id;
     element.textContent = "execute";
 
     document.getElementById(atElement).appendChild(element);
@@ -76,6 +79,7 @@ function scanForCheckedInDiv(div) {
     }
 
     let radios = d.querySelectorAll('input[type="radio"]:checked');
+    console.log(radios);
     let checked = [];
     checked.push(div);
     radios.forEach(radio => {
