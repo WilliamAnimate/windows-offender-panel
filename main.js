@@ -32,7 +32,11 @@ function onFormSubmit(where) {
     }
     console.log(networkStr)
     console.log(networkStr.join(":"));
-    // invokeRequest(networkStr).await;
+    if (networkStr.length <3) {
+        console.warn("networkStr not 3!");
+        return false;
+    }
+    // invokeRequest(networkStr);
 
     return false;
 }
