@@ -24,7 +24,7 @@ const processTypes = [
     { entry: "process_termination" },
     { atElement: "process_termination" },
     { switch: "process_termination" },
-    { id: "pidInput", inputPlaceholders: "4" },
+    { id: "pidInput", inputPlaceholders: "PID" },
 ]
 
 /**
@@ -95,7 +95,7 @@ function __createExecuteBtn(atElement, id) {
     let element = document.createElement("button");
     element.classList.add("block-centered");
     element.id = `${id}_executioner`;
-    element.textContent = "execute";
+    element.textContent = "Execute";
 
     document.getElementById(atElement).appendChild(element);
     element.addEventListener("click", function(){onFormSubmit(id)});
@@ -142,17 +142,4 @@ function radio_onFormSubmit(event) {
     invokeRequest(s);
 
     return false;
-}
-
-function assembleNetworkString() {
-    let checked = getCheckedRadioIds();
-    if (checked.length == 0) {
-        return null;
-    }
-
-    let str2 = checked.join(":");
-    let str = "powercontrol:" + str2;
-
-    console.log(str);
-    return str;
 }
