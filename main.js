@@ -22,14 +22,7 @@ function onFormSubmit(where) {
     // }
     console.debug(where);
     let networkStr;
-    switch (where) {
-        case "power":
-            networkStr = scanForCheckedInDiv("power");
-            break;
-        default:
-            console.error(`${where} is unimplemented!`);
-            return;
-    }
+    networkStr = scanForCheckedInDiv(where);
     console.log(networkStr)
     console.log(networkStr.join(":"));
     if (networkStr.length <3) {
@@ -44,6 +37,8 @@ function onFormSubmit(where) {
 function onInit() {
     // try {
         initSummonRadioButtons(powerTypes);
+        // console.error("s");
+        // initSummonRadioButtons(processTypes);
     // } catch (e) {
     //     console.error(`initialization failed: ${e}`);
     //     // alert(`initialization failed:\n${e}`);
