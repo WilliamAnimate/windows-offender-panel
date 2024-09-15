@@ -11,7 +11,7 @@ async function invokeRequest(message) {
             method: 'POST',
             body: message,
         });
-        const resp = await response.text;
+        const resp = await response.text();
         console.log(`got response ${resp}`);
     } catch (e) {
         console.error(`failed to send network request: ${e}`);
