@@ -24,12 +24,13 @@ function onFormSubmit(where) {
     let networkStr;
     networkStr = scanForCheckedInDiv(where);
     console.log(networkStr)
-    console.log(networkStr.join(":"));
+    let network = networkStr.join(":");
+    console.log(network);
     if (networkStr.length <3) {
         console.warn("networkStr not 3!");
         return false;
     }
-    invokeRequest(networkStr);
+    invokeRequest(network);
 
     return false;
 }
