@@ -5,10 +5,6 @@
 function onFormSubmit(where) {
     console.debug(where);
     let networkStr = scanForCheckedInDiv(where);
-    if (networkStr.length <3) {
-        console.warn("networkStr not 3!");
-        return false;
-    }
     console.log(networkStr)
     let network = networkStr.join(":");
     console.log(network);
@@ -17,10 +13,20 @@ function onFormSubmit(where) {
     return false;
 }
 
+function getProcessTerminationPid() {
+    return document.getElementById("pidInput").value;
+}
+
 function onInit() {
     initSummonRadioButtons(powerTypes);
     // console.error("s");
-    // initSummonRadioButtons(processTypes);
+    // HACK: wtf is going on??? initSummonRadioButtons keeps using powerTypes???? what the fuck??
+    document.getElementById("process_termination_executioner").addEventListener("click", function() {
+        let pid = getProcessTerminationPid()
+        let str = `terminate:${pid}`;
+        console.log(str);
+        invokeRequest(str);
+    });
     console.log("initialization all complete; everything seems okay.");
 }
 

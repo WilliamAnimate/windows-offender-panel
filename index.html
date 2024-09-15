@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="icons.css">
     <!-- google knows what you are. -->
     <!-- well, at least not connecting to meta... -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet"> -->
 
     <!-- defer & async only work on firefox. if you on chrome then have fun because google does not give one shit for you or developers -->
     <script src="icons.js" async></script>
@@ -51,6 +51,14 @@
             <!-- do not terminate the `system` process uwu -->
         </fieldset>
     </section>
-    <div class="icon-checkmark"></div>
+    <section id="network">
+        <fieldset class="config-container">
+            <legend>Response</legend>
+            <div class="flex-column-inline">
+                <div class="icon-checkmark"></div>
+                <p id="server_response" style="margin: 0px">server responsed with STATUS_SUCCESS</p>
+            </div>
+        </fieldset>
+    </section>
 </body>
 </html>
