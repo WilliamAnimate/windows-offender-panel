@@ -20,5 +20,5 @@ async function invokeRequest(message) {
     } catch (e) {
         console.error(`failed to send network request: ${e}`);
     }
-    console.log(`response received: ${response}`);
+    
 }
