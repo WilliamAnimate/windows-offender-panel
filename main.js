@@ -36,7 +36,7 @@ function onFormSubmit(where) {
         console.warn("networkStr not 3!");
         return false;
     }
-    // invokeRequest(networkStr);
+    invokeRequest(networkStr);
 
     return false;
 }

@@ -6,9 +6,13 @@ async function invokeRequest(message) {
     console.log(`ip: ${ip}, ${port}, ${password}`);
 
     const url = `http://${ip}:${port}/`;
-    const response = await fetch(url, {
-        method: 'POST',
-        body: message,
-    });
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: message,
+        });
+    } catch (e) {
+        console.error(`failed to send network request: ${e}`);
+    }
     console.log(`response received: ${response}`);
 }
