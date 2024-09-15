@@ -1,6 +1,3 @@
-// its a tuesday.
-// the executioner works on a tuesday.
-var executioner; // variable will be assigned a value in initSummonRadioButtons
 // im confident there is a datatype that does this 100 times better
 // TODO: fixme
 const powerTypes = [
@@ -16,6 +13,13 @@ const powerTypes = [
     { id: "halt", text: "Halt" },
 ];
 
+const processTypes = [
+    { entry: "process_termination" },
+    { atElement: "process_termination" },
+    { switch: "process_termination" },
+    { id: "pidInput", inputPlaceholders: "4" },
+]
+
 /**
  * init sequence: create all radioBtns as part of the const `radioBtns` in radio.js
  * @see powerTypes (part of radio.js)
@@ -26,7 +30,6 @@ function initSummonRadioButtons(array) {
     __createTypesInArray(powerTypes);
 
     __createExecuteBtn(atElement, entry);
-    executioner = document.getElementById("config_execute");
 }
 
 function __createTypesInArray(array) {
@@ -35,13 +38,30 @@ function __createTypesInArray(array) {
     array.shift();
     let toGo;
     array.forEach(a => {
+        console.log(a);
+        // yanderedev, activate!
         if (a.switch) {
             console.debug(`changing toGo to ${a.switch}`);
             toGo = document.getElementById(a.switch);
-        } else {
+        } else if (a.inputPlaceholders) {
+            console.log("wtf");
+            __createInputbox(a.id, a.processTypes, toGo);
+        } else if (a.text) {
+            console.log("cringe");
             __createCheckbox(a.id, a.text, toGo);
+        } else {
+            console.log("none");
         }
     });
+}
+
+function __createInputbox(id, text, createOn = Element) {
+    let input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.setAttribute("id", id);
+    input.setAttribute("placeholder", text);
+
+    createOn.appendChild(input);
 }
 
 function __createCheckbox(id, text, createOn = Element) {
