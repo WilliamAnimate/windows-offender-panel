@@ -4,8 +4,8 @@ var executioner; // variable will be assigned a value in initSummonRadioButtons
 // im confident there is a datatype that does this 100 times better
 // TODO: fixme
 const powerTypes = [
-    { entry: "power" },
-    { atElement: "power" },
+    { entry: "powercontrol" },
+    { atElement: "powercontrol" },
     { switch: "config" },
     { id: "normal", text: "Normal" },
     { id: "syscalls", text: "Syscall" },
