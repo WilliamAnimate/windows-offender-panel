@@ -13,6 +13,13 @@ const powerTypes = [
     { id: "halt", text: "Halt" },
 ];
 
+// const rfpowerTypes = [
+//     { entry: "powercontrol" },
+//     { atElement: "powercontrol" },
+//     { switch: "config" },
+//     { id: "normal", text: "Normal" },
+// ];
+
 const processTypes = [
     { entry: "process_termination" },
     { atElement: "process_termination" },

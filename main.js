@@ -27,6 +27,10 @@ function onInit() {
         console.log(str);
         invokeRequest(str);
     });
+    document.getElementById("raw_input_executioner").addEventListener("click", function() {
+        const asdf = document.getElementById("rawInput").value;
+        invokeRequest(asdf);
+    })
     console.log("initialization all complete; everything seems okay.");
 }
 
