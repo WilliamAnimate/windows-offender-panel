@@ -5,7 +5,7 @@ const powerTypes = [
     { atElement: "powercontrol" },
     { switch: "config" },
     { id: "normal", text: "Normal" },
-    { id: "syscalls", text: "Syscall" },
+    { id: "native", text: "Native" },
     { id: "firmware", text: "Firmware" },
     { switch: "postconfig" },
     { id: "powerdown", text: "Power down" },
