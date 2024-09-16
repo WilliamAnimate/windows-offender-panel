@@ -3,17 +3,19 @@ async function invokeRequest(message) {
     const port = document.getElementById("portInput").value;
     const password = document.getElementById("passwordInput").value;
 
-    console.log(`ip: ${ip}, ${port}, ${password}`);
 
-    // prepend a "hash"
-    let hashedmsg = `c13a6cf1f7186b9743b5ae1525171c9a1e949fac:${message}`;
-    console.log(hashedmsg);
+    let passwordHash = await calculateSha256(password);
+
+    console.log(`Ip: ${ip} Port: ${port} Pw: ${password} PwHash: ${passwordHash}`);
+
+    let finalMessage = `${passwordHash}:${message}`;
+ 
 
     const url = `http://${ip}:${port}/`;
     try {
         const response = await fetch(url, {
             method: 'POST',
-            body: message,
+            body: finalMessage,
         });
         const resp = await response.text();
         console.log(`got response ${resp}`);
