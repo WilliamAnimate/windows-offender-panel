@@ -1,15 +1,15 @@
-async function invokeRequest(message, opt_auto_prepend_hash = true) {
+async function invokeRequest(message, prepend_hash = true) {
     const ip = document.getElementById("ipInput").value;
     const port = document.getElementById("portInput").value;
     const password = document.getElementById("passwordInput").value;
 
 
     // can't use an if statement but can do this. thanks js
-    let passwordHash = opt_auto_prepend_hash ? await calculateSha256(password) : "if this string makes it to finalMessage then this code is wrong. [insert js exploit here that crashes the browser]";
+    let passwordHash = prepend_hash ? await calculateSha256(password) : "if this string makes it to finalMessage then this code is wrong. [insert js exploit here that crashes the browser]";
 
     console.log(`Ip: ${ip} Port: ${port} Pw: ${password} PwHash: ${passwordHash}`);
 
-    let finalMessage = opt_auto_prepend_hash ? `${passwordHash}:${message}` : message;
+    let finalMessage = prepend_hash ? `${passwordHash}:${message}` : message;
     console.log(finalMessage);
  
 
