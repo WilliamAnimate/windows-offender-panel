@@ -94,6 +94,10 @@ button:hover {
     background-color: var(--good-hover-color);
 }
 
+button:active {
+    background: var(--text-color);
+}
+
 .radio-container {
     display: flex;
     flex-direction: column;
