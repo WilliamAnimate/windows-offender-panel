@@ -43,7 +43,8 @@ function onInit() {
     });
     document.getElementById("raw_input_executioner").addEventListener("click", function() {
         const asdf = document.getElementById("rawInput").value;
-        invokeRequest(asdf);
+        const isCheckboxChecked = document.getElementById("raw_input_prependhash").checked;
+        invokeRequest(asdf, isCheckboxChecked);
     })
     console.log("initialization all complete; everything seems okay.");
 }

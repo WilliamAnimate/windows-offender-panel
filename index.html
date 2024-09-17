@@ -50,13 +50,14 @@
             <p>Terminate process</p>
             <input type="text" id="pidInput" placeholder="PID">
             <button class="block-centered" id="process_termination_executioner" style="margin-top: 10px;">Execute</button>
-            <!-- do not terminate the `system` process uwu -->
         </fieldset>
 
         <fieldset id="raw_input" class="config-container">
             <legend>Raw request</legend>
             <input type="text" id="rawInput" placeholder="example:arg1:arg2" style="width: 95%">
-            <button class="block-centered" id="raw_input_executioner" style="margin-top: 10px;">Execute</button>
+		    <input type="checkbox" id="raw_input_prependhash" checked>
+		    <label for="raw_input_prependhash" style="margin-left: -0px; top: 10px"> Automatically prepend hash</label>
+            <button class="block-centered" id="raw_input_executioner" style="margin-top: 20px;">Execute</button>
         </fieldset>
     </section>
     <section id="network">
