@@ -2,6 +2,8 @@ async function invokeRequest(message, prepend_hash = true) {
     const ip = document.getElementById("ipInput").value;
     const port = document.getElementById("portInput").value;
     const password = document.getElementById("passwordInput").value;
+    const user_response = document.getElementById("server_response");
+    const icon_symbol = document.getElementById("response_icon");
 
 
     // can't use an if statement but can do this. thanks js
@@ -21,8 +23,20 @@ async function invokeRequest(message, prepend_hash = true) {
         });
         const resp = await response.text();
         console.log(`got response ${resp}`);
+        user_response.textContent = resp;
+        icon_symbol.classList.remove("icon-cross");
+        icon_symbol.classList.add("icon-checkmark");
     } catch (e) {
         console.error(`failed to send network request: ${e}`);
+        // N.B. PLEASE DO NOT USE .innerHTML!
+        // that could potentally turn into a CVE; we could receive html tags and that would be able to do RCE.
+        // that includes, <script>, fullscreen DOM elements...
+        user_response.textContent = e;
+        icon_symbol.classList.remove("icon-checkmark");
+        icon_symbol.classList.add("icon-cross");
+    } finally {
+        // who actually remembers this is a real thing?
+        domRejitterIcons();
     }
     
 }

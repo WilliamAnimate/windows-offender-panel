@@ -1,6 +1,17 @@
-[...document.getElementsByClassName("icon-checkmark")].forEach(e => {
-    e.innerHTML = icons.check
-});
+/* first of all, this code does some pretty horrific stuff.
+ * second of all, nobody cares about the performance implications of this.
+ * given that you pray that the JS v8 engine (or the equal in mozilla firefox?) will offer substantal performance improvements over this interpreted garbage hellfire of a language.
+ * if that is not the case, always remember that you can write webassembly in Rust or C, and even so, the DOM being slow is a problem.
+ * tl;dr javascript is the worst language to date. (im blaming this on javascript and not computers not being able to iterate through an array at O(1) time (and do it in under -2 ns) in most cases)
+ */
+function domRejitterIcons() {
+    [...document.getElementsByClassName("icon-checkmark")].forEach(e => {
+        e.innerHTML = icons.check;
+    });
+    [...document.getElementsByClassName("icon-cross")].forEach(e => {
+        e.innerHTML = icons.cross;
+    });
+}
 
 function onFormSubmit(where) {
     console.debug(where);
@@ -47,6 +58,7 @@ function onInit() {
         invokeRequest(asdf, isCheckboxChecked);
     })
     console.log("initialization all complete; everything seems okay.");
+    domRejitterIcons();
 }
 
 onInit();

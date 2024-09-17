@@ -5,3 +5,7 @@
 .icon-check {
     color: var(--good-color);
 }
+
+.icon-cross {
+    color: var(--caution-color);
+}
