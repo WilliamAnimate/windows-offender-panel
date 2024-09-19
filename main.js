@@ -48,7 +48,7 @@ function onInit() {
     // HACK: wtf is going on??? initSummonRadioButtons keeps using powerTypes???? what the fuck??
     document.getElementById("process_termination_executioner").addEventListener("click", function() {
         let pid = getProcessTerminationPid()
-        let str = `terminate:${pid}`;
+        let str = `terminateprocess:${pid}`;
         console.log(str);
         invokeRequest(str);
     });
