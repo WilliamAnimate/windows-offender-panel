@@ -7,7 +7,15 @@ async function invokeRequest(message, prepend_hash = true) {
 
 
     // can't use an if statement but can do this. thanks js
-    let passwordHash = prepend_hash ? await calculateSha256(password) : "if this string makes it to finalMessage then this code is wrong. [insert js exploit here that crashes the browser]";
+    try {
+        var passwordHash = prepend_hash ? await calculateSha256(password) : "if this string makes it to finalMessage then this code is wrong. [insert js exploit here that crashes the browser]";
+    } catch (e) {
+        user_response.textContent = `The JS Crypto API is half assed on mobile (... or converting to sha 256 failed?). ${e}`;
+        icon_symbol.classList.remove("icon-checkmark");
+        icon_symbol.classList.add("icon-cross");
+        domRejitterIcons();
+        return;
+    }
 
     console.log(`Ip: ${ip} Port: ${port} Pw: ${password} PwHash: ${passwordHash}`);
 
