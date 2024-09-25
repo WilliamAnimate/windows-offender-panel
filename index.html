@@ -52,11 +52,18 @@
             <button class="block-centered" id="process_termination_executioner" style="margin-top: 10px;">Execute</button>
         </fieldset>
 
+        <fieldset id="self_destruct" class="config-container">
+            <legend>Self Destruct</legend>
+		    <input type="checkbox" id="self_destruct_verif">
+		    <label for="self_destruct_verif" class="checkbox-label"> I am sure</label>
+            <button class="block-centered" id="self_destruct_executioner" style="margin-top: 20px;">Execute</button>
+        </fieldset>
+
         <fieldset id="raw_input" class="config-container">
             <legend>Raw request</legend>
             <input type="text" id="rawInput" placeholder="example:arg1:arg2" style="width: 95%">
 		    <input type="checkbox" id="raw_input_prependhash" checked>
-		    <label for="raw_input_prependhash" style="margin-left: -0px; top: 10px"> Automatically prepend hash</label>
+		    <label class="checkbox-label" for="raw_input_prependhash"> Automatically prepend hash</label>
             <button class="block-centered" id="raw_input_executioner" style="margin-top: 20px;">Execute</button>
         </fieldset>
     </section>

@@ -27,14 +27,14 @@ function onFormSubmit(where) {
 async function calculateSha256(message) {
     // Convert the message to a Uint8Array
     const msgBuffer = new TextEncoder().encode(message);
-    
+
     // Hash the message using SHA-256
     const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-    
+
     // Convert the hash to a hexadecimal string
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    
+
     return hashHex;
 }
 
@@ -56,6 +56,19 @@ function onInit() {
         const asdf = document.getElementById("rawInput").value;
         const isCheckboxChecked = document.getElementById("raw_input_prependhash").checked;
         invokeRequest(asdf, isCheckboxChecked);
+    });
+    document.getElementById("self_destruct_executioner").addEventListener("click", function() {
+        const checked = document.getElementById("self_destruct_verif").checked;
+        if (!checked) {
+            const user_response = document.getElementById("server_response");
+            const icon_symbol = document.getElementById("response_icon");
+            user_response.textContent = "Self destruct verification checkbox not checked. Not proceeding.";
+            icon_symbol.classList.remove("icon-checkmark");
+            icon_symbol.classList.add("icon-cross");
+            domRejitterIcons();
+            return;
+        }
+        invokeRequest("selfdestruct");
     })
     console.log("initialization all complete; everything seems okay.");
     domRejitterIcons();

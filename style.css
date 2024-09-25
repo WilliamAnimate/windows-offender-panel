@@ -179,6 +179,10 @@ label {
     padding-left: 20px;
 }
 
+.checkbox-label {
+    margin-left: -0px; top: 10px
+}
+
 input[type="radio"]::before {
     content: "";
     display: block;
