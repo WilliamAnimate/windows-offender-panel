@@ -7,7 +7,7 @@ async function invokeRequest(message, prepend_hash = true) {
 
 
     // can't use an if statement but can do this. thanks js
-    var passwordHash = prepend_hash ? await sha256(password) : "if this string makes it to finalMessage then this code is wrong. [insert js exploit here that crashes the browser]";
+    var passwordHash = prepend_hash ? sha256(password) : "if this string makes it to finalMessage then this code is wrong. [insert js exploit here that crashes the browser]";
 
     console.log(`Ip: ${ip} Port: ${port} Pw: ${password} PwHash: ${passwordHash}`);
 
