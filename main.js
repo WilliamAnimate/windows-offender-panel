@@ -24,20 +24,6 @@ function onFormSubmit(where) {
     return false;
 }
 
-async function calculateSha256(message) {
-    // Convert the message to a Uint8Array
-    const msgBuffer = new TextEncoder().encode(message);
-
-    // Hash the message using SHA-256
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-
-    // Convert the hash to a hexadecimal string
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
-    return hashHex;
-}
-
 function getProcessTerminationPid() {
     return document.getElementById("pidInput").value;
 }
