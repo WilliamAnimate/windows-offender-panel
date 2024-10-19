@@ -1,3 +1,81 @@
+class ChaCha20 {
+    constructor(key, nonce) {
+        this.key = new Uint8Array(32);
+        this.nonce = new Uint8Array(12);
+        this.counter = 0;
+        this.state = new Uint32Array(16);
+
+        // init state
+        for (let i = 0; i < 4; i++) {
+            this.state[i] = 0x61707865 + i * 0x3320646e;
+            this.state[i + 4] = 0x79622d32 + i * 0x6b206574;
+        }
+
+        // set key
+        for (let i = 0; i < 8; i++) {
+            this.state[4 + i] = (key[i * 4] << 24) | (key[i * 4 + 1] << 16) |
+                                (key[i * 4 + 2] << 8) | key[i * 4 + 3];
+        }
+
+        // set nonce
+        for (let i = 0; i < 3; i++) {
+            this.state[12 + i] = (nonce[i * 4] << 24) | (nonce[i * 4 + 1] << 16) |
+                                 (nonce[i * 4 + 2] << 8) | nonce[i * 4 + 3];
+        }
+
+        this.state[15] = this.counter;
+    }
+
+    encrypt(data) {
+        const keystream = new Uint8Array(64);
+        let result = new Uint8Array(data.length);
+
+        for (let i = 0; i < data.length; i += 64) {
+            this.block(keystream);
+            for (let j = 0; j < Math.min(64, data.length - i); j++) {
+            result[i + j] = data[i + j] ^ keystream[j];
+            }
+        }
+
+        return result;
+    }
+
+    block(out) {
+        const x = [...this.state];
+
+        for (let i = 0; i < 10; i++) {
+            quarterRound(x[0], x[4], x[8], x[12]);
+            quarterRound(x[1], x[5], x[9], x[13]);
+            quarterRound(x[2], x[6], x[10], x[14]);
+            quarterRound(x[3], x[7], x[11], x[15]);
+            quarterRound(x[0], x[5], x[10], x[15]);
+            quarterRound(x[1], x[6], x[11], x[12]);
+            quarterRound(x[2], x[7], x[8], x[13]);
+            quarterRound(x[3], x[4], x[9], x[14]);
+        }
+
+        for (let i = 0; i < 16; i++) {
+            out[i * 4] = (x[i] + this.state[i]) >> 24;
+            out[i * 4 + 1] = ((x[i] + this.state[i]) >> 16) & 0xFF;
+            out[i * 4 + 2] = ((x[i] + this.state[i]) >> 8) & 0xFF;
+            out[i * 4 + 3] = x[i] + this.state[i];
+        }
+
+        this.counter++;
+        this.state[12] += 1;
+        if (this.state[12] === 0) {
+            this.state[13]++;
+        }
+    }
+}
+
+function quarterRound(a, b, c, d) {
+    a += b; d ^= a; d <<= 16;
+    c += d; b ^= c; b >>= 12;
+    a += b; d ^= a; d <<= 8;
+    c += d; b ^= c; b >>= 7;
+}
+
 function sha256(ascii) {
     function rightRotate(value, amount) {
         return (value >>> amount) | (value << (32 - amount));

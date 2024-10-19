@@ -11,15 +11,35 @@ async function invokeRequest(message, prepend_hash = true) {
 
     console.log(`Ip: ${ip} Port: ${port} Pw: ${password} PwHash: ${passwordHash}`);
 
-    let finalMessage = prepend_hash ? `${passwordHash}:${message}` : message;
-    console.log(finalMessage);
+    /*
+     * structure:
+     *
+     * <12bytenonce><encrypteddata>
+     *
+     * where encrypteddata is the chacha20 encrypted data with the nonce and the password, the structure of it when unencrypted is the usual:
+     * <sha256hash><request>:<arg1>:<arg2>...
+     */
 
+    // TODO secure key initialization
+    const key = new Uint8Array(32).fill(0x01);
+    const nonce = new Uint8Array(12);
+    crypto.getRandomValues(nonce);
+    const chacha20 = new ChaCha20(key, nonce);
+
+    const plaintext = new TextEncoder().encode(message);
+    const ciphertext = chacha20.encrypt(plaintext);
+    console.log(ciphertext);
+    let encrypteddata = prepend_hash ? `${passwordHash}:${message}` : message;
+    console.log(encrypteddata);
+
+    let finalciphertext = `${nonce}${encrypteddata}`;
+    console.log(finalciphertext);
 
     const url = `http://${ip}:${port}/`;
     try {
         const response = await fetch(url, {
             method: 'POST',
-            body: finalMessage,
+            body: finalciphertext,
         });
         const resp = await response.text();
         console.log(`got response ${resp}`);
