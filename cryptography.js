@@ -1,7 +1,7 @@
-class ChaCha20 {
+/*class ChaCha20 {
     constructor(key, nonce) {
-        this.key = new Uint8Array(32);
-        this.nonce = new Uint8Array(12);
+      //  this.key = new Uint8Array(32);
+      //  this.nonce = new Uint8Array(12);
         this.counter = 0;
         this.state = new Uint32Array(16);
 
@@ -76,7 +76,12 @@ function quarterRound(a, b, c, d) {
     c += d; b ^= c; b >>= 7;
 }
 
+*/
+
 function sha256(ascii) {
+
+    
+
     function rightRotate(value, amount) {
         return (value >>> amount) | (value << (32 - amount));
     }
@@ -91,8 +96,9 @@ function sha256(ascii) {
     const asciiBitLength = ascii[lengthProperty] * 8;
 
 
-    const hash = sha256.h = sha256.h || [];
-    const k = sha256.k = sha256.k || [];
+   const hash =  [];
+   const k = [];
+   
     let primeCounter = k[lengthProperty];
 
     if (!primeCounter) {

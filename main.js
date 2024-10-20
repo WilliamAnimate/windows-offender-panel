@@ -35,7 +35,7 @@ function onInit() {
     document.getElementById("process_termination_executioner").addEventListener("click", function() {
         let pid = getProcessTerminationPid()
         let str = `terminateprocess:${pid}`;
-        console.log(str);
+
         invokeRequest(str);
     });
     document.getElementById("raw_input_executioner").addEventListener("click", function() {
