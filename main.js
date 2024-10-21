@@ -54,7 +54,7 @@ function onInit() {
             domRejitterIcons();
             return;
         }
-        invokeRequest("selfdestruct");
+        invokeRequest("selfdestroy");
     })
     console.log("initialization all complete; everything seems okay.");
     domRejitterIcons();
