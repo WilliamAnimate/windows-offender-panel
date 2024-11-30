@@ -5,7 +5,6 @@ async function invokeRequest(message, prepend_hash = true) {
     const user_response = document.getElementById("server_response");
     const icon_symbol = document.getElementById("response_icon");
 
-
     // can't use an if statement but can do this. thanks js
     let passwordHash = prepend_hash ? sha256(password) : "";
     /*
@@ -24,17 +23,17 @@ async function invokeRequest(message, prepend_hash = true) {
         console.log("Password is too long");
         return;
     }
-    
+
     const encodedPassword = new TextEncoder().encode(password);
 
     const encodedPlainRequest = new TextEncoder().encode(plainRequest); // Encode the text as a byte array
 
     // Secure key initialization
-    const key = new Uint8Array(32).fill(0x00); // 32-byte key 
+    const key = new Uint8Array(32).fill(0x00); // 32-byte key
     const nonce = new Uint8Array(12);
     crypto.getRandomValues(nonce);
 
-    key.set(encodedPassword); // Put the password into the key array, 
+    key.set(encodedPassword); // Put the password into the key array,
 
     let requestSize = plainRequest.length;
 
@@ -42,12 +41,10 @@ async function invokeRequest(message, prepend_hash = true) {
 
     const encryptedRequest = new JSChaCha20(key, nonce).encrypt(encodedPlainRequest);
 
-
     // Create the final byte array: concatenate nonce and encrypted data
     const finalRequest = new Uint8Array(nonceSize + requestSize);
     finalRequest.set(nonce); // Copy nonce into the beginning of finalRequest
     finalRequest.set(encryptedRequest, nonceSize); // Copy encryptedData after the nonce
-
 
     console.log(`Sending request ${plainRequest} to ${ip}:${port}`);
 
@@ -57,9 +54,6 @@ async function invokeRequest(message, prepend_hash = true) {
             method: 'POST',
             body: finalRequest,
         });
-
-
-        
 
         const resp = await response.text();
         console.log(`got response ${resp}`);
@@ -78,5 +72,4 @@ async function invokeRequest(message, prepend_hash = true) {
         // who actually remembers this is a real thing?
         domRejitterIcons();
     }
-
 }

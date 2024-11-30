@@ -1,7 +1,4 @@
 function sha256(ascii) {
-
-    
-
     function rightRotate(value, amount) {
         return (value >>> amount) | (value << (32 - amount));
     }
@@ -15,10 +12,9 @@ function sha256(ascii) {
     const words = [];
     const asciiBitLength = ascii[lengthProperty] * 8;
 
+    const hash =  [];
+    const k = [];
 
-   const hash =  [];
-   const k = [];
-   
     let primeCounter = k[lengthProperty];
 
     if (!primeCounter) {
