@@ -18,8 +18,7 @@ async function invokeRequest(message, prepend_hash = true) {
 
     let plainRequest = prepend_hash ? `${passwordHash}:${message}` : message;
 
-    if(password.length > 32)
-    {
+    if(password.length > 32) {
         console.log("Password is too long");
         return;
     }
