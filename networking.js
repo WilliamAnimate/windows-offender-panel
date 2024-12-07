@@ -45,6 +45,7 @@ async function invokeRequest(message, prepend_hash = true) {
     finalRequest.set(nonce); // Copy nonce into the beginning of finalRequest
     finalRequest.set(encryptedRequest, nonceSize); // Copy encryptedData after the nonce
 
+
     console.log(`Sending request ${plainRequest} to ${ip}:${port}`);
 
     const url = `http://${ip}:${port}/`;
@@ -56,7 +57,9 @@ async function invokeRequest(message, prepend_hash = true) {
 
         const resp = await response.text();
         console.log(`got response ${resp}`);
-        user_response.textContent = resp;
+        let status_code = parseStatusCode(resp);
+        // its either [statuscode] or [statuscode][nonce][encrypted_data]
+        user_response.textContent = status_code;
         icon_symbol.classList.remove("icon-cross");
         icon_symbol.classList.add("icon-checkmark");
     } catch (e) {
@@ -71,4 +74,19 @@ async function invokeRequest(message, prepend_hash = true) {
         // who actually remembers this is a real thing?
         domRejitterIcons();
     }
+}
+
+function parseStatusCode(input) {
+    // Note: this might need to be changed to [u8]; strings aren't gonna cut it.
+    let s = input.slice(0, 4);
+    console.log(`first 4 letters: ${s}`);
+    // TODO: hashtable. don't even think about yanderedev.
+    if (parseInt(s) == 0000) {
+        return "SUCCESS";
+    } else if (parseInt(s) == 0001) {
+        return "INVALID_ARGUMENTS";
+    } // impl the rest later
+
+    console.error(`Unknown code ${s}`);
+    return s; // unknown code
 }
