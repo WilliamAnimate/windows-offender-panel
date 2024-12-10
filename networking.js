@@ -1,9 +1,21 @@
+const STATUS_CODES = {
+    "0000": "SUCCESS",
+    "0001": "INVALID_ARGUMENTS",
+    "0002": "REQUEST_HANDLING_ERROR",
+    "0003": "DRIVER_IOCTL_ERROR",
+    "0004": "UNKNOWN_REQUEST",
+    "0100": "UNSUCCESSFUL",
+};
+
+const user_response = document.getElementById("server_response");
+const icon_symbol = document.getElementById("response_icon");
+
 async function invokeRequest(message, prepend_hash = true) {
     const ip = document.getElementById("ipInput").value;
     const port = document.getElementById("portInput").value;
+    // const ip = "127.0.0.1";
+    // const port = "7878";
     const password = document.getElementById("passwordInput").value;
-    const user_response = document.getElementById("server_response");
-    const icon_symbol = document.getElementById("response_icon");
 
     // can't use an if statement but can do this. thanks js
     let passwordHash = prepend_hash ? sha256(password) : "";
@@ -55,18 +67,13 @@ async function invokeRequest(message, prepend_hash = true) {
             body: finalRequest,
         });
 
-        const resp = await response.text();
+        const resp = await response.bytes();
         console.log(`got response ${resp}`);
         let status_code = parseStatusCode(resp);
         // its either [statuscode] or [statuscode][nonce][encrypted_data]
         user_response.textContent = status_code;
-        icon_symbol.classList.remove("icon-cross");
-        icon_symbol.classList.add("icon-checkmark");
     } catch (e) {
         console.error(`failed to send network request: ${e}`);
-        // N.B. PLEASE DO NOT USE .innerHTML!
-        // that could potentally turn into a CVE; we could receive html tags and that would be able to do RCE.
-        // that includes, <script>, fullscreen DOM elements...
         user_response.textContent = e;
         icon_symbol.classList.remove("icon-checkmark");
         icon_symbol.classList.add("icon-cross");
@@ -77,16 +84,20 @@ async function invokeRequest(message, prepend_hash = true) {
 }
 
 function parseStatusCode(input) {
-    // Note: this might need to be changed to [u8]; strings aren't gonna cut it.
-    let s = input.slice(0, 4);
-    console.log(`first 4 letters: ${s}`);
-    // TODO: hashtable. don't even think about yanderedev.
-    if (parseInt(s) == 0000) {
-        return "SUCCESS";
-    } else if (parseInt(s) == 0001) {
-        return "INVALID_ARGUMENTS";
-    } // impl the rest later
-
-    console.error(`Unknown code ${s}`);
-    return s; // unknown code
+    let sliced = input.slice(0, 4);
+    // convert from [u8;4] to string
+    // (sorry for rust array lingo lmao. hallilo's never gonna understand what [u8;4] is)
+    let firstFour = Array.from(sliced, byte => String.fromCharCode(byte));
+    firstFour = firstFour.join('');
+    console.log(`first 4 letters: ${firstFour}, parseInt'd: ${parseInt(firstFour)}`);
+    // hardcoded: set checkmark if STATUS_SUCCESS
+    if (firstFour == 0000) {
+        icon_symbol.classList.remove("icon-cross");
+        icon_symbol.classList.add("icon-checkmark");
+    } else {
+        icon_symbol.classList.add("icon-cross");
+        icon_symbol.classList.remove("icon-checkmark");
+    }
+    let friendly_status_code = STATUS_CODES[firstFour] || "CLIENT_UNKNOWN_RESPONSE_STATUS";
+    return `${friendly_status_code} (${firstFour})`
 }
