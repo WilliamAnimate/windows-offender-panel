@@ -11,10 +11,10 @@ const user_response = document.getElementById("server_response");
 const icon_symbol = document.getElementById("response_icon");
 
 async function invokeRequest(message, prepend_hash = true) {
-    const ip = document.getElementById("ipInput").value;
-    const port = document.getElementById("portInput").value;
-    // const ip = "127.0.0.1";
-    // const port = "7878";
+    // const ip = document.getElementById("ipInput").value;
+    // const port = document.getElementById("portInput").value;
+    const ip = "127.0.0.1";
+    const port = "7878";
     const password = document.getElementById("passwordInput").value;
 
     // can't use an if statement but can do this. thanks js
@@ -40,7 +40,10 @@ async function invokeRequest(message, prepend_hash = true) {
     const encodedPlainRequest = new TextEncoder().encode(plainRequest); // Encode the text as a byte array
 
     // Secure key initialization
-    const key = new Uint8Array(32).fill(0x00); // 32-byte key
+    // const key = new Uint8Array(32).fill(0x97); // 32-byte key
+    const encoder = new TextEncoder();
+    const key = encoder.encode("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    console.log(key);
     const nonce = new Uint8Array(12);
     crypto.getRandomValues(nonce);
 
@@ -70,8 +73,21 @@ async function invokeRequest(message, prepend_hash = true) {
         const resp = await response.bytes();
         console.log(`got response ${resp}`);
         let status_code = parseStatusCode(resp);
+        let nonce = resp.slice(4, 16);
+        let bytes = resp.slice(16);
+        console.log(nonce);
+        console.log(bytes);
+        // mom, can we have shadowing?
+        // we have shadowing at home
+        // shadowing at home:
+        console.log(key, nonce, bytes);
+        let decryptedResponse = new JSChaCha20(key, nonce).decrypt(bytes);
+        console.log(decryptedResponse);
+        decryptedResponse = Array.from(decryptedResponse, byte => String.fromCharCode(byte));
+        decryptedResponse = decryptedResponse.join('');
+        console.log(decryptedResponse);
         // its either [statuscode] or [statuscode][nonce][encrypted_data]
-        user_response.textContent = status_code;
+        user_response.textContent = `${status_code} response: ${decryptedResponse}`;
     } catch (e) {
         console.error(`failed to send network request: ${e}`);
         user_response.textContent = e;
