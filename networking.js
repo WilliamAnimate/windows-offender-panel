@@ -72,7 +72,15 @@ async function invokeRequest(message, prepend_hash = true) {
 
         const resp = await response.bytes();
         console.log(`got response ${resp}`);
+        if (resp.length < 4) {
+            user_response.textContent = `Invalid response! Raw bytes: ${resp}`;
+            return;
+        }
         let status_code = parseStatusCode(resp);
+        if (resp.length == 4) {
+            user_response.textContent = `Received status: ${status_code}`;
+            return;
+        }
         let nonce = resp.slice(4, 16);
         let bytes = resp.slice(16);
         console.log(nonce);
