@@ -11,10 +11,8 @@ const user_response = document.getElementById("server_response");
 const icon_symbol = document.getElementById("response_icon");
 
 async function invokeRequest(message, prepend_hash = true) {
-    // const ip = document.getElementById("ipInput").value;
-    // const port = document.getElementById("portInput").value;
-    const ip = "127.0.0.1";
-    const port = "7878";
+    const ip = document.getElementById("ipInput").value;
+    const port = document.getElementById("portInput").value;
     const password = document.getElementById("passwordInput").value;
 
     // can't use an if statement but can do this. thanks js
