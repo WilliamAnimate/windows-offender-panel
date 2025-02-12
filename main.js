@@ -21,10 +21,16 @@ function domFlashResponseOnError() {
     const config = document.getElementById("response");
 
     if (icon_symbol.classList.contains("icon-cross")) {
-        console.log("warn");
+        if (config.classList.contains("flash_borders")) {
+            // already animating; skip.
+            return;
+        }
         config.classList.add("flash_borders");
+        setTimeout(() => {
+            config.classList.remove("flash_borders")
+        }, 510);
     } else {
-        console.log("dont");
+        // remove if already flashing (its very impossible to do this, but its an edge case)
         config.classList.remove("flash_borders");
     }
 }
