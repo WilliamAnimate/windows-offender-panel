@@ -13,6 +13,22 @@ function domRejitterIcons() {
     });
 }
 
+/**
+* Windows NT-esque function naming lmao
+*/
+function domFlashResponseOnError() {
+    const icon_symbol = document.getElementById("response_icon");
+    const config = document.getElementById("response");
+
+    if (icon_symbol.classList.contains("icon-cross")) {
+        console.log("warn");
+        config.classList.add("flash_borders");
+    } else {
+        console.log("dont");
+        config.classList.remove("flash_borders");
+    }
+}
+
 function onFormSubmit(where) {
     console.debug(where);
     let networkStr = scanForCheckedInDiv(where);

@@ -102,6 +102,7 @@ async function invokeRequest(message, prepend_hash = true) {
     } finally {
         // who actually remembers this is a real thing?
         domRejitterIcons();
+        domFlashResponseOnError();
     }
 }
 

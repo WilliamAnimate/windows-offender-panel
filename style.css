@@ -65,6 +65,17 @@ body {
     width: 35%;
     height: 40%;
 }
+@keyframes config-container-border-flash {
+    0% {
+        border: var(--caution-color) 2px solid;
+    }
+    100% {
+        border: var(--outline-color-focused) 2px solid;
+    }
+}
+.config-container.flash_borders {
+    animation: 1s infinite alternate config-container-border-flash var(--transition-bezier);
+}
 .config-container-inner {
     display: flex;
     flex-direction: row;
