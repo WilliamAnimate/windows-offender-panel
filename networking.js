@@ -11,6 +11,12 @@ const user_response = document.getElementById("server_response");
 const icon_symbol = document.getElementById("response_icon");
 
 async function invokeRequest(message, prepend_hash = true) {
+    await invokeRequestInner(message, prepend_hash);
+    domRejitterIcons();
+    domFlashResponseOnError();
+}
+
+async function invokeRequestInner(message, prepend_hash = true) {
     const ip = document.getElementById("ipInput").value;
     const port = document.getElementById("portInput").value;
     const password = document.getElementById("passwordInput").value;
@@ -29,7 +35,9 @@ async function invokeRequest(message, prepend_hash = true) {
     let plainRequest = prepend_hash ? `${passwordHash}:${message}` : message;
 
     if(password.length > 32) {
-        console.log("Password is too long");
+        user_response.textContent = "Password is too long (must be <32 chars)";
+        icon_symbol.classList.remove("icon-checkmark");
+        icon_symbol.classList.add("icon-cross");
         return;
     }
 
@@ -95,10 +103,6 @@ async function invokeRequest(message, prepend_hash = true) {
         user_response.textContent = e;
         icon_symbol.classList.remove("icon-checkmark");
         icon_symbol.classList.add("icon-cross");
-    } finally {
-        // who actually remembers this is a real thing?
-        domRejitterIcons();
-        domFlashResponseOnError();
     }
 }
 
