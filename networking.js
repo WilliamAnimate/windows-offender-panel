@@ -38,14 +38,10 @@ async function invokeRequest(message, prepend_hash = true) {
     const encodedPlainRequest = new TextEncoder().encode(plainRequest); // Encode the text as a byte array
 
     // Secure key initialization
-    // const key = new Uint8Array(32).fill(0x97); // 32-byte key
-    const encoder = new TextEncoder();
-    const key = encoder.encode("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-    console.log(key);
+    let key = new Uint8Array(32);
+    key.set(encodedPassword); // all indices after will be null
     const nonce = new Uint8Array(12);
     crypto.getRandomValues(nonce);
-
-    key.set(encodedPassword); // Put the password into the key array,
 
     let requestSize = plainRequest.length;
 
@@ -86,8 +82,8 @@ async function invokeRequest(message, prepend_hash = true) {
         // mom, can we have shadowing?
         // we have shadowing at home
         // shadowing at home:
-        console.log(key, nonce, bytes);
-        let decryptedResponse = new JSChaCha20(key, nonce).decrypt(bytes);
+        console.log(originalKey, nonce, bytes);
+        let decryptedResponse = new JSChaCha20(originalKey, nonce).decrypt(bytes);
         console.log(decryptedResponse);
         decryptedResponse = Array.from(decryptedResponse, byte => String.fromCharCode(byte));
         decryptedResponse = decryptedResponse.join('');
