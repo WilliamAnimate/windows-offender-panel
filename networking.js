@@ -90,8 +90,8 @@ async function invokeRequestInner(message, prepend_hash = true) {
         // mom, can we have shadowing?
         // we have shadowing at home
         // shadowing at home:
-        console.log(originalKey, nonce, bytes);
-        let decryptedResponse = new JSChaCha20(originalKey, nonce).decrypt(bytes);
+        console.log(key, nonce, bytes);
+        let decryptedResponse = new JSChaCha20(key, nonce).decrypt(bytes);
         console.log(decryptedResponse);
         decryptedResponse = Array.from(decryptedResponse, byte => String.fromCharCode(byte));
         decryptedResponse = decryptedResponse.join('');
