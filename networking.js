@@ -35,7 +35,7 @@ async function invokeRequestInner(message, prepend_hash = true) {
     let plainRequest = prepend_hash ? `${passwordHash}:${message}` : message;
 
     if(password.length > 32) {
-        user_response.textContent = "Password is too long (must be <32 chars)";
+        user_response.textContent = "Password is too long (password.length <= 32 not true)";
         icon_symbol.classList.remove("icon-checkmark");
         icon_symbol.classList.add("icon-cross");
         return;
