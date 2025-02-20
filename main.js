@@ -20,7 +20,6 @@ function domFlashResponseOnError() {
     const icon_symbol = document.getElementById("response_icon");
     const config = document.getElementById("response");
 
-    if (icon_symbol.classList.contains("icon-cross")) {
         if (config.classList.contains("flash_borders")) {
             // already animating; skip.
             return;
@@ -29,10 +28,7 @@ function domFlashResponseOnError() {
         setTimeout(() => {
             config.classList.remove("flash_borders")
         }, 510);
-    } else {
-        // remove if already flashing (its very impossible to do this, but its an edge case)
-        config.classList.remove("flash_borders");
-    }
+    
 }
 
 function onFormSubmit(where) {
