@@ -67,7 +67,7 @@ body {
 }
 @keyframes config-container-border-flash {
     0% {
-        border: var(--caution-color) 2px solid;
+        border: var(--accent-color) 2px solid;
     }
     100% {
         border: var(--outline-color) 2px solid;
