@@ -13,7 +13,7 @@ const icon_symbol = document.getElementById("response_icon");
 async function invokeRequest(message, prepend_hash = true) {
     await invokeRequestInner(message, prepend_hash);
     domRejitterIcons();
-    domFlashResponseOnError();
+    domFlashResponse();
 }
 
 async function invokeRequestInner(message, prepend_hash = true) {

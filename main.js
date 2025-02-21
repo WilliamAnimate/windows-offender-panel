@@ -16,7 +16,7 @@ function domRejitterIcons() {
 /**
 * Windows NT-esque function naming lmao
 */
-function domFlashResponseOnError() {
+function domFlashResponse() {
     const icon_symbol = document.getElementById("response_icon");
     const config = document.getElementById("response");
 
@@ -28,7 +28,7 @@ function domFlashResponseOnError() {
         setTimeout(() => {
             config.classList.remove("flash_borders")
         }, 510);
-    
+
 }
 
 function onFormSubmit(where) {
@@ -70,6 +70,7 @@ function onInit() {
             icon_symbol.classList.remove("icon-checkmark");
             icon_symbol.classList.add("icon-cross");
             domRejitterIcons();
+            domFlashResponse();
             return;
         }
         invokeRequest("selfdestroy");
