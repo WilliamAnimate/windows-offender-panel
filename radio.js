@@ -7,6 +7,7 @@ const powerTypes = [
     { id: "normal", text: "Normal" },
     { id: "native", text: "Native" },
     { id: "firmware", text: "Firmware" },
+    { id: "triplefault", text: "Triple Fault" },
     { switch: "postconfig" },
     { id: "poweroff", text: "Power down" },
     { id: "reboot", text: "Reboot" },
