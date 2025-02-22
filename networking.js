@@ -4,6 +4,8 @@ const STATUS_CODES = {
     "0002": "REQUEST_HANDLING_ERROR",
     "0003": "DRIVER_IOCTL_ERROR",
     "0004": "UNKNOWN_REQUEST",
+    "0005": "NOT_ENOUGH_ARGUMENTS",
+    "0006": "INVALID_REQUEST_SYNTAX",
     "0100": "UNSUCCESSFUL",
 };
 
@@ -121,6 +123,6 @@ function parseStatusCode(input) {
         icon_symbol.classList.add("icon-cross");
         icon_symbol.classList.remove("icon-checkmark");
     }
-    let friendly_status_code = STATUS_CODES[firstFour] || "CLIENT_UNKNOWN_RESPONSE_STATUS";
+    let friendly_status_code = STATUS_CODES[firstFour] || "Unknown Status";
     return `${friendly_status_code} (${firstFour})`
 }
